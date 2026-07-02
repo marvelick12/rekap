@@ -458,3 +458,143 @@ body {
         padding: 1.25rem;
     }
 }
+
+/* Mobile responsivity for tables */
+@media (max-width: 768px) {
+    .table-responsive {
+        margin: 0 -1rem;
+    }
+    
+    .table-modern thead {
+        display: none;
+    }
+    
+    .table-modern tbody tr {
+        display: block;
+        border: 1px solid var(--border-color);
+        margin-bottom: 1rem;
+        border-radius: 0.5rem;
+        background-color: white;
+    }
+    
+    .table-modern td {
+        display: block;
+        text-align: right;
+        padding: 0.75rem 1rem;
+        border: none;
+        border-bottom: 1px solid var(--border-color);
+        position: relative;
+        padding-left: 45%;
+    }
+    
+    .table-modern td:last-child {
+        border-bottom: none;
+    }
+    
+    .table-modern td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 1rem;
+        font-weight: 600;
+        color: var(--text-main);
+        text-align: left;
+        width: 40%;
+    }
+    
+    /* Hide columns in mobile */
+    .table-hide-mobile {
+        display: none;
+    }
+    
+    /* Modal adjustments for mobile */
+    .modal-lg {
+        margin: 0.5rem;
+    }
+    
+    .modal-dialog {
+        max-width: 90vw;
+    }
+    
+    .modal-content {
+        border-radius: 1rem;
+    }
+    
+    /* Filter form adjustments */
+    .card-filament .card-body {
+        padding: 1rem;
+    }
+    
+    .form-label {
+        font-size: 0.8rem;
+        margin-bottom: 0.35rem;
+    }
+    
+    /* Button adjustments in filter */
+    .col-12 .d-flex.gap-2 {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+    
+    .col-12 .d-flex.gap-2 button,
+    .col-12 .d-flex.gap-2 a {
+        flex: 1;
+        min-width: 45%;
+        font-size: 0.85rem;
+        padding: 0.4rem 0.5rem;
+    }
+    
+    /* Table action buttons on mobile */
+    .table-modern td:last-child .d-flex {
+        flex-wrap: wrap;
+        gap: 0.35rem;
+    }
+    
+    .table-modern td:last-child .btn-sm {
+        padding: 0.3rem 0.4rem;
+        font-size: 0.75rem;
+    }
+}
+
+/* Extra small devices (< 576px) */
+@media (max-width: 575.98px) {
+    .modal-lg {
+        width: calc(100vw - 2rem);
+        max-width: calc(100vw - 2rem);
+    }
+    
+    .modal-content {
+        margin: 0;
+        max-height: 90vh;
+        overflow-y: auto;
+    }
+    
+    .modal-header {
+        padding: 1rem;
+    }
+    
+    .modal-body {
+        padding: 1rem;
+    }
+    
+    .modal-footer {
+        padding: 0.75rem 1rem;
+        gap: 0.5rem;
+    }
+    
+    .modal-footer .btn {
+        flex: 1;
+        padding: 0.4rem 0.5rem;
+        font-size: 0.85rem;
+    }
+    
+    .form-control,
+    .form-select {
+        font-size: 0.9rem;
+        padding: 0.4rem 0.6rem;
+    }
+    
+    .input-group-text {
+        font-size: 0.9rem;
+        padding: 0.4rem 0.6rem;
+    }
+}

@@ -113,31 +113,31 @@
                             <tbody>
                                 <?php foreach ($rencanas as $r): ?>
                                     <tr>
-                                        <td>
+                                        <td data-label="Check">
                                             <div class="form-check form-switch m-0 d-flex justify-content-center">
                                                 <input class="form-check-input rencana-status-checkbox" type="checkbox" role="switch" data-id="<?= $r['id'] ?>" <?= $r['status'] == 1 ? 'checked' : '' ?>>
                                             </div>
                                         </td>
-                                        <td>
+                                        <td data-label="Tanggal">
                                             <span class="fw-semibold text-main"><?= format_indo_date($r['tanggal']) ?></span>
                                             <small class="text-muted d-block" style="font-size:0.75rem;"><i class="far fa-calendar me-1"></i><?= $r['hari'] ?></small>
                                         </td>
-                                        <td>
+                                        <td data-label="Project" class="table-hide-mobile">
                                             <span class="badge bg-light text-primary border border-primary-light px-2.5 py-1.5 fw-semibold"><i class="fas fa-folder me-1"></i><?= htmlspecialchars($r['nama_project']) ?></span>
                                         </td>
-                                        <td class="text-wrap fw-medium">
+                                        <td data-label="Target Pekerjaan" class="text-wrap fw-medium">
                                             <?= htmlspecialchars($r['target_pekerjaan']) ?>
                                         </td>
-                                        <td>
+                                        <td data-label="Status" class="table-hide-mobile">
                                             <span id="rencana-badge-<?= $r['id'] ?>" class="badge-modern <?= $r['status'] == 1 ? 'badge-modern-success' : 'badge-modern-danger' ?>">
                                                 <i class="fas <?= $r['status'] == 1 ? 'fa-check-circle' : 'fa-times-circle' ?> me-1"></i>
                                                 <?= $r['status'] == 1 ? 'Selesai' : 'Belum Selesai' ?>
                                             </span>
                                         </td>
-                                        <td class="text-truncate" style="max-width: 150px;">
+                                        <td data-label="Catatan" class="text-truncate" style="max-width: 150px;">
                                             <?= htmlspecialchars($r['catatan'] ?: '-') ?>
                                         </td>
-                                        <td class="no-print">
+                                        <td data-label="Aksi" class="no-print">
                                             <div class="d-flex justify-content-center gap-1">
                                                 <button class="btn btn-sm btn-outline-warning py-1 px-2 btn-edit" data-id="<?= $r['id'] ?>" title="Edit">
                                                     <i class="fas fa-edit"></i>
@@ -152,14 +152,6 @@
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>
-                                <?php if (empty($rencanas)): ?>
-                                    <tr>
-                                        <td colspan="7" class="text-center py-5 text-muted">
-                                            <i class="fas fa-tasks fs-1 mb-2 d-block"></i>
-                                            Belum ada data rencana pekerjaan.
-                                        </td>
-                                    </tr>
-                                <?php endif; ?>
                             </tbody>
                         </table>
                     </div>
@@ -263,14 +255,21 @@
         $(document).ready(function() {
             var table = $('#rencanaTable').DataTable({
                 "language": {
-                    "url": "//cdn.datatables.net/plug-ins/1.13.6/i18n/id.json"
+                    "url": "//cdn.datatables.net/plug-ins/1.13.6/i18n/id.json",
+                    "emptyTable": "<i class='fas fa-tasks fs-1 d-block mb-2' style='opacity: 0.5;'></i>Belum ada data rencana pekerjaan."
                 },
                 "paging": true,
                 "searching": false,
                 "info": true,
                 "ordering": true,
-                "columnDefs": [
-                    { "orderable": false, "targets": [0, 6] }
+                "columns": [
+                    { "orderable": false },
+                    { "orderable": true },
+                    { "orderable": true },
+                    { "orderable": true },
+                    { "orderable": true },
+                    { "orderable": true },
+                    { "orderable": false }
                 ]
             });
 

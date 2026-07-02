@@ -94,27 +94,27 @@
                                 foreach ($jurnals as $j): 
                                 ?>
                                     <tr>
-                                        <td><?= $no++ ?></td>
-                                        <td>
+                                        <td data-label="No" class="table-hide-mobile"><?= $no++ ?></td>
+                                        <td data-label="Tanggal">
                                             <span class="fw-semibold text-main"><?= format_indo_date($j['tanggal']) ?></span>
                                             <small class="text-muted d-block" style="font-size:0.75rem;"><i class="far fa-clock me-1"></i><?= date('H:i', strtotime($j['jam_mulai'])) ?> - <?= date('H:i', strtotime($j['jam_selesai'])) ?></small>
                                         </td>
-                                        <td>
+                                        <td data-label="Unit / Divisi" class="table-hide-mobile">
                                             <span class="badge bg-light text-dark border"><?= htmlspecialchars($j['unit_divisi']) ?></span>
                                         </td>
-                                        <td class="text-wrap fw-medium">
+                                        <td data-label="Pekerjaan" class="text-wrap fw-medium">
                                             <?= htmlspecialchars($j['nama_pekerjaan']) ?>
                                         </td>
-                                        <td class="text-truncate" style="max-width: 150px;">
+                                        <td data-label="Catatan" class="text-truncate" style="max-width: 150px;">
                                             <?= htmlspecialchars($j['catatan'] ?: '-') ?>
                                         </td>
-                                        <td>
+                                        <td data-label="Status" class="table-hide-mobile">
                                             <span class="badge-modern <?= $j['status'] === 'Selesai' ? 'badge-modern-success' : ($j['status'] === 'Pending' ? 'badge-modern-warning' : 'badge-modern-primary') ?>">
                                                 <i class="fas <?= $j['status'] === 'Selesai' ? 'fa-check-circle' : ($j['status'] === 'Pending' ? 'fa-hourglass-half' : 'fa-spinner') ?> me-1"></i>
                                                 <?= htmlspecialchars($j['status']) ?>
                                             </span>
                                         </td>
-                                        <td class="no-print">
+                                        <td data-label="Aksi" class="no-print">
                                             <div class="d-flex justify-content-center gap-1">
                                                 <button class="btn btn-sm btn-outline-info py-1 px-2 btn-detail" data-id="<?= $j['id'] ?>" title="Detail">
                                                     <i class="fas fa-eye"></i>
@@ -132,14 +132,6 @@
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>
-                                <?php if (empty($jurnals)): ?>
-                                    <tr>
-                                        <td colspan="7" class="text-center py-5 text-muted">
-                                            <i class="fas fa-folder-open fs-1 mb-2 d-block"></i>
-                                            Belum ada data jurnal harian.
-                                        </td>
-                                    </tr>
-                                <?php endif; ?>
                             </tbody>
                         </table>
                     </div>
@@ -326,14 +318,21 @@
             // Initialize DataTable (without server-side, using standard frontend filtering matching our custom controls)
             var table = $('#jurnalTable').DataTable({
                 "language": {
-                    "url": "//cdn.datatables.net/plug-ins/1.13.6/i18n/id.json"
+                    "url": "//cdn.datatables.net/plug-ins/1.13.6/i18n/id.json",
+                    "emptyTable": "<i class='fas fa-folder-open fs-1 d-block mb-2' style='opacity: 0.5;'></i>Belum ada data jurnal harian."
                 },
                 "paging": true,
-                "searching": false, // using custom filter card above
+                "searching": false,
                 "info": true,
                 "ordering": true,
-                "columnDefs": [
-                    { "orderable": false, "targets": 6 }
+                "columns": [
+                    { "orderable": false },
+                    { "orderable": true },
+                    { "orderable": true },
+                    { "orderable": true },
+                    { "orderable": true },
+                    { "orderable": true },
+                    { "orderable": false }
                 ]
             });
 

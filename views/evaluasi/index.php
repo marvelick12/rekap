@@ -93,11 +93,11 @@
                                 foreach ($evaluasis as $e): 
                                 ?>
                                     <tr>
-                                        <td><?= $no++ ?></td>
-                                        <td>
+                                        <td data-label="No" class="table-hide-mobile"><?= $no++ ?></td>
+                                        <td data-label="Tanggal">
                                             <span class="fw-semibold text-main"><?= format_indo_date($e['tanggal']) ?></span>
                                         </td>
-                                        <td class="text-wrap">
+                                        <td data-label="Kendala" class="text-wrap">
                                             <?php if (!empty($e['kendala'])): ?>
                                                 <div class="p-2 bg-danger-light rounded text-danger small border-start border-danger border-3">
                                                     <?= htmlspecialchars($e['kendala']) ?>
@@ -106,13 +106,13 @@
                                                 <span class="text-success small"><i class="fas fa-circle-check me-1"></i> Tidak ada kendala</span>
                                             <?php endif; ?>
                                         </td>
-                                        <td class="text-wrap small">
+                                        <td data-label="Solusi" class="text-wrap small table-hide-mobile">
                                             <?= htmlspecialchars($e['solusi'] ?: '-') ?>
                                         </td>
-                                        <td class="text-wrap small font-monospace">
+                                        <td data-label="Target Besok" class="text-wrap small font-monospace">
                                             <?= htmlspecialchars($e['target_besok'] ?: '-') ?>
                                         </td>
-                                        <td class="no-print">
+                                        <td data-label="Aksi" class="no-print">
                                             <div class="d-flex justify-content-center gap-1">
                                                 <button class="btn btn-sm btn-outline-info py-1 px-2 btn-detail" data-id="<?= $e['id'] ?>" title="Detail">
                                                     <i class="fas fa-eye"></i>
@@ -130,14 +130,6 @@
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>
-                                <?php if (empty($evaluasis)): ?>
-                                    <tr>
-                                        <td colspan="6" class="text-center py-5 text-muted">
-                                            <i class="fas fa-chart-line fs-1 mb-2 d-block"></i>
-                                            Belum ada data evaluasi harian.
-                                        </td>
-                                    </tr>
-                                <?php endif; ?>
                             </tbody>
                         </table>
                     </div>
@@ -318,14 +310,20 @@
         $(document).ready(function() {
             var table = $('#evaluasiTable').DataTable({
                 "language": {
-                    "url": "//cdn.datatables.net/plug-ins/1.13.6/i18n/id.json"
+                    "url": "//cdn.datatables.net/plug-ins/1.13.6/i18n/id.json",
+                    "emptyTable": "<i class='fas fa-chart-line fs-1 d-block mb-2' style='opacity: 0.5;'></i>Belum ada data evaluasi harian."
                 },
                 "paging": true,
                 "searching": false,
                 "info": true,
                 "ordering": true,
-                "columnDefs": [
-                    { "orderable": false, "targets": 5 }
+                "columns": [
+                    { "orderable": false },
+                    { "orderable": true },
+                    { "orderable": true },
+                    { "orderable": true },
+                    { "orderable": true },
+                    { "orderable": false }
                 ]
             });
 
