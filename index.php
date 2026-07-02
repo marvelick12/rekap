@@ -108,6 +108,16 @@ switch ($route) {
         (new RiwayatController())->index();
         break;
 
+    case 'keuangan':
+        require_once __DIR__ . '/controllers/KeuanganController.php';
+        (new KeuanganController())->index();
+        break;
+
+    case 'profile':
+        require_once __DIR__ . '/controllers/ProfileController.php';
+        (new ProfileController())->index();
+        break;
+
     case 'register':
         require_once __DIR__ . '/controllers/AuthController.php';
         (new AuthController())->register();

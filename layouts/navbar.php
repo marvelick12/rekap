@@ -30,6 +30,9 @@ require_once __DIR__ . '/../helpers/date_helper.php';
                     case 'riwayat':
                         echo 'Riwayat & Cetak Laporan';
                         break;
+                    case 'keuangan':
+                        echo 'Keuangan';
+                        break;
                     default:
                         echo 'Aplikasi Laporan';
                 }

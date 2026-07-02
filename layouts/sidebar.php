@@ -49,6 +49,13 @@ $current_route = $_GET['route'] ?? 'dashboard';
             </a>
         </li>
 
+        <li class="sidebar-item">
+            <a href="index.php?route=keuangan" class="sidebar-link <?= $current_route === 'keuangan' ? 'active' : '' ?>">
+                <i class="fas fa-wallet"></i>
+                <span>Keuangan</span>
+            </a>
+        </li>
+
         <li class="sidebar-item my-3" style="border-top: 1px solid var(--border-color);"></li>
         
         <li class="sidebar-item">
